@@ -60,7 +60,7 @@ The E-Paper 2.13" display is based on Active Matrix Electrophoretic Display (AME
 |     3.3V      |    7(3.3V)|    POWER SUPPLY      |    5V         |    NC     |     NC      |
 |     GND       |    8 (GND)|    GROUND      |    GND        |    9 (GND)|     GROUND    |
 
-| Note: PIN 2 (RST) , 15 (BSY) & 16 (D/C) of E-PAPER should be connected with PWM, SDA & SCL of WBZ451 Respectively !! |
+| Note: PIN 2 (RST) , 15 (BSY) & 16 (D/C) of E-PAPER should be connected with PWM, SDA & SCL of WBZ351 Respectively !! |
 | --- |
 
 ![](docs/connection.png) ![](docs/pin_connection.png)
@@ -69,33 +69,31 @@ The E-Paper 2.13" display is based on Active Matrix Electrophoretic Display (AME
 
 - [MPLAB X IDE ](https://www.microchip.com/en-us/tools-resources/develop/mplab-x-ide#tabs)
 
-    - Version: 6.00
-	- XC32 Compiler v4.10
-	- MPLAB® Code Configurator v5.1.17
-	- PIC32CX-BZ_DFP v1.0.107
+    - Version: 6.20
+	- XC32 Compiler v4.45
+	- MPLAB® Code Configurator v5.7.1
+	- PIC32CX-BZ3_DFP v1.2.183
 	- MCC Harmony
-	  - csp version: v3.13.1
-	  - core version: v3.11.1
-	  - CMSIS-FreeRTOS: v10.4.6
-	  - wireless_pic32cxbz_wbz: v1.0.0
-	  - wireless_ble: v1.0.0	  
-	  - dev_packs: v3.13.1
-	  - wolfssl version: v4.7.0
-	  - crypto version: v3.7.6
+	  - csp version: v3.19.7
+	  - core version: v3.13.5
+	  - CMSIS-FreeRTOS: v10.5.1
+	  - CMSIS_5: v5.9.0
+	  - wireless_pic32cxbz_wbz: v1.4.0
+	  - wireless_ble: v1.3.0
 	    
 
 - [Microchip Bluetooth Data (MBD) iOS/Android app](https://play.google.com/store/apps/details?id=com.microchip.bluetooth.data&hl=en_IN&gl=US)
 
-- [MPLAB X IPE v6.00](https://microchipdeveloper.com/ipe:installation)
+- [MPLAB X IPE v6.20](https://microchipdeveloper.com/ipe:installation)
 
 ## 5. Harmony MCC Configuration<a name="step5">
 
-### Getting started with E-PAPER DISPLAY with WBZ451 CURIOSITY BOARD.
+### Getting started with E-PAPER DISPLAY with WBZ351 CURIOSITY BOARD.
 
 | Tip | New users of MPLAB Code Configurator are recommended to go through the [overview](https://onlinedocs.microchip.com/pr/GUID-1F7007B8-9A46-4D03-AEED-650357BA760D-en-US-6/index.html?GUID-AFAB9227-B10C-4FAE-9785-98474664B50A) |
 | :- | :- |
 
-**Step 1** - Connect the WBZ451 CURIOSITY BOARD to the device/system using a micro-USB cable.
+**Step 1** - Connect the WBZ351 CURIOSITY BOARD to the device/system using a micro-USB cable.
 
 **Step 2** - The project graph of the E-PAPER application is shown below.
 
@@ -109,13 +107,7 @@ The E-Paper 2.13" display is based on Active Matrix Electrophoretic Display (AME
 
 ![](docs/8_spi.png)
 
-**Step 4** - In MCC harmony project graph, Add the BLE Stack from device resources under Libraries->Harmony->wireless->drivers->BLE and will prompt an Auto-activation for "Device_Support","PDS_SubSystem","NVM","Cryptographic","wolfcrypt Library" component, give yes to add the component and give yes to Auto-connect.
-
-- In Device_Support add satisfiers by right click on the "⬦" in Device_Support->RTC to add the RTC component.
-
-![](docs/Dev_sup.png)
-
-![](docs/ble_sta_sati.png)
+**Step 4** - In MCC harmony project graph, Add the BLE Stack from device resources under Libraries->Harmony->wireless->drivers->BLE and will prompt an Auto-activation for "Device_Support","PDS_SubSystem","NVM" component, give yes to add the component and give yes to Auto-connect.
 
 - Configure the BLE Stack as Shown below.
 
@@ -123,11 +115,7 @@ The E-Paper 2.13" display is based on Active Matrix Electrophoretic Display (AME
 
 ![](docs/11_ble_stack_2.png)
 
-**Step 5** - In MCC harmony project graph, select wolfCrypt Library and configure as mentioned below.
-
-![](docs/12_wolf.png)
-
-**Step 6** - In MCC harmony project graph, Add Transparent profile from device resources under Libraries->Harmony->wireless->drivers->BLE->Profiles and configure as shown below.
+**Step 5** - In MCC harmony project graph, Add Transparent profile from device resources under Libraries->Harmony->wireless->drivers->BLE->Profiles and configure as shown below.
 
 ![](docs/13_transparent_profile.png)
 
@@ -135,7 +123,7 @@ The E-Paper 2.13" display is based on Active Matrix Electrophoretic Display (AME
 
 ![](docs/trans_pro_satis.png)
 
-**Step 7** - In MCC harmony project graph, Add CONSOLE from Device Resources under Libraries->Harmony->System Services to add the "CONSOLE" component as shown below.
+**Step 6** - In MCC harmony project graph, Add CONSOLE from Device Resources under Libraries->Harmony->System Services to add the "CONSOLE" component as shown below.
 
 ![](docs/sercom0_satis.png)
 
@@ -143,23 +131,24 @@ The E-Paper 2.13" display is based on Active Matrix Electrophoretic Display (AME
 
 ![](docs/10_sercom0.png)
 
-**Step 8** - In MCC harmony project graph, select system and configure as mentioned below.
+**Step 7** - In MCC harmony project graph, select system and configure as mentioned below.
 
 ![](docs/2_system1.png)
 
-**Step 9** - In MCC harmony project graph, select Core and verify the mentioned below.
+**Step 8** - In MCC harmony project graph, select Core and verify the mentioned below.
 
 ![](docs/5_core.png)
 
-**Step 10** - In MCC harmony project graph, select FreeRTOS and configure as mentioned below.
+**Step 9** - In MCC harmony project graph, select FreeRTOS and configure as mentioned below.
 
 ![](docs/4_freertos.png)
 
-**Step 11** - In project graph, go to Plugins->Pin configurations->Pin settings and set the pin configuration as shown below.
+**Step 10** - In project graph, go to Plugins->Pin configurations->Pin settings and set the pin configuration as shown below.
 
 - Use these PIN Names while configuring.
 
 ```
+USER_LED
 CLICK_EINK_BUNDLE_CS
 CLICK_EINK_BUNDLE_DC
 CLICK_EINK_BUNDLE_RST
@@ -168,9 +157,9 @@ CLICK_EINK_BUNDLE_BSY
 
 ![](docs/pinsetting.png)
 
-**Step 12** - [Generate](https://onlinedocs.microchip.com/pr/GUID-A5330D3A-9F51-4A26-B71D-8503A493DF9C-en-US-1/index.html?GUID-9C28F407-4879-4174-9963-2CF34161398E) the code.
+**Step 11** - [Generate](https://onlinedocs.microchip.com/pr/GUID-A5330D3A-9F51-4A26-B71D-8503A493DF9C-en-US-1/index.html?GUID-9C28F407-4879-4174-9963-2CF34161398E) the code.
 
-**Step 13** - From the unzipped folder copy the folder click_routines(which contains the eink_bundle.h, eink_bundle_font.h, eink_bundle_image.h, eink_bundle.c,  eink_bundle_font.c, eink_bundle_image.c) to the folder firmware/src under your MPLAB Harmony v3 application project and add the Header (eink_bundle.h, eink_bundle_font.h, eink_bundle_image.h) and Source file (eink_bundle.c, eink_bundle_font.c, eink_bundle_image.c).
+**Step 12** - From the unzipped folder copy the folder click_routines(which contains the eink_bundle.h, eink_bundle_font.h, eink_bundle_image.h, eink_bundle.c,  eink_bundle_font.c, eink_bundle_image.c) to the folder firmware/src under your MPLAB Harmony v3 application project and add the Header (eink_bundle.h, eink_bundle_font.h, eink_bundle_image.h) and Source file (eink_bundle.c, eink_bundle_font.c, eink_bundle_image.c).
 
 - In the project explorer, Right click on folder Header Files and add a sub folder click_routines by selecting “Add Existing Items from Folders…”
 
@@ -214,38 +203,21 @@ CLICK_EINK_BUNDLE_BSY
 
 - The click_routines folder contain an C source file eink_bundle.c. You could use eink_bundle.c as a reference to add E-Paper display functionality to your application.
 
-**Step 14** - Change the following Code as givien below.
+**Step 13** - Change the following Code as givien below.
 
-- In your MPLAB Harmony v3 based application go to "firmware\src\app_user_edits.c", make sure the below code line is commented.
+- In your MPLAB Harmony v3 based application go to "firmware\src\app_user_edits.c", implement the changes mentioned and make sure the below code line is commented.
 
 ```
 //#error User action required - manually edit files as described here.
 ```
 
-- In your MPLAB Harmony v3 based application go to "firmware\src\config\default\peripheral\sercom\spi_master\plib_sercom1_spi_master.c" and do the following changes.
-  
-  - At Line 177 include the following code to setup the clock frequency.  
-  
-	```
-	if (setup->clockFrequency == 0)
-		{
-			baudValue = SERCOM1_SPIM_BAUD_VALUE;
-		}
-		else
-		{
-			baudValue = (spiSourceClock/(2U*(setup->clockFrequency))) - 1U;
-		}
-	```		
-
-![](docs/plib_sercom1_spi_master.png)
-
 - In your MPLAB Harmony v3 based application go to "firmware\src\app.h" and do the following changes.
 
-	- Copy & Paste the Code in [app.h](https://github.com/MicrochipTech/PIC32CXBZ2_WBZ45x_BLE_UART_E_PAPER_Display/blob/main/WBZ451_E_PAPER_BLE_UART/firmware/src/app.h)
+	- Copy & Paste the Code in [app.h](https://github.com/MicrochipTech/PIC32CXBZ3_WBZ35x_BLE_UART_E_PAPER_DISPLAY/blob/main/WBZ351_E_PAPER_BLE_UART/src/app.h)
 
 - In your MPLAB Harmony v3 based application go to "firmware\src\app.c" and do the following changes.
 
-	- Copy & Paste the Code in [app.c](https://github.com/MicrochipTech/PIC32CXBZ2_WBZ45x_BLE_UART_E_PAPER_Display/blob/main/WBZ451_E_PAPER_BLE_UART/firmware/src/app.c)
+	- Copy & Paste the Code in [app.c](https://github.com/MicrochipTech/PIC32CXBZ3_WBZ35x_BLE_UART_E_PAPER_DISPLAY/blob/main/WBZ351_E_PAPER_BLE_UART/src/app.c)
 
 - In your MPLAB Harmony v3 based application go to "firmware\src\app_ble\app_ble_handler.c" and do the following changes.
 	
@@ -266,16 +238,9 @@ CLICK_EINK_BUNDLE_BSY
 	- Under the Switch Case "BLE_GAP_EVT_CONNECTED" add the following code.
 	
 		```
-		APP_Msg_T    appMsg;
-		appMsg.msgId = APP_MSG_BLE_DISPLAY_EVT;
-		appMsg.msgData[BLE_DATA_LINE] = BLE_TEXT_LINE1;
-		appMsg.msgData[BLE_DATA_SIZE] = BLE_TEXT_STATUS_SIZE;
-		memcpy(&appMsg.msgData[BLE_DATA], " CONNECTED  ", BLE_TEXT_STATUS_SIZE);            
-		appMsg.msgData[DISP_DATA_OFFSET+BLE_TEXT_STATUS_SIZE+1]= '\0';
+		USER_LED_Clear();
 		SERCOM0_USART_Write((uint8_t *)"Connected\r\n",11);
 		conn_hdl = p_event->eventField.evtConnect.connHandle;
-		OSAL_QUEUE_Send(&appData.appQueue, &appMsg, 0);
-
 		```
 	
 	![](docs/BLE_GAP_EVT_CONNECTED.png)
@@ -283,17 +248,10 @@ CLICK_EINK_BUNDLE_BSY
 	- Under the Switch Case "BLE_GAP_EVT_DISCONNECTED" add the following code.
 	
 		```
-		APP_Msg_T    appMsg;
-		appMsg.msgId = APP_MSG_BLE_DISPLAY_EVT;
-		appMsg.msgData[BLE_DATA_LINE] = BLE_TEXT_LINE1;
-		appMsg.msgData[BLE_DATA_SIZE] = BLE_TEXT_STATUS_SIZE;
-		memcpy(&appMsg.msgData[BLE_DATA], "DISCONNECTED", BLE_TEXT_STATUS_SIZE);             
-		appMsg.msgData[DISP_DATA_OFFSET+BLE_TEXT_STATUS_SIZE+1]= '\0';
+		USER_LED_Set();
 		SERCOM0_USART_Write((uint8_t *)"Disconnected\r\n",14);
 		conn_hdl = 0xFFFF;
 		BLE_GAP_SetAdvEnable(0x01, 0);
-		OSAL_QUEUE_Send(&appData.appQueue, &appMsg, 0);
-
 		```
 	
 	![](docs/BLE_GAP_EVT_DISCONNECTED.png)
@@ -328,42 +286,19 @@ CLICK_EINK_BUNDLE_BSY
 
 		APP_Msg_T    appMsg;
 		appMsg.msgId = APP_MSG_BLE_DISPLAY_EVT;
-		appMsg.msgData[BLE_DATA_LINE] = BLE_TEXT_LINE2;
-		appMsg.msgData[BLE_DATA_SIZE] = data_len;
-		memcpy(&appMsg.msgData[BLE_DATA], ble_data, data_len);
-		appMsg.msgData[DISP_DATA_OFFSET+data_len+1]= '\0';
+		memcpy(&appMsg.msgData, ble_data, data_len);
+		appMsg.msgData[data_len+1]= '\0'; 
 		OSAL_QUEUE_Send(&appData.appQueue, &appMsg, 0);
 
 		// Free memory	
 		OSAL_Free(ble_data);
-
 		```
 	
-	![](docs/BLE_TRSPS_EVT_RECEIVE_DATA.png)
+	![](docs/BLE_TRSPS_EVT_RECEIVE_DATA.png)	
+	
+**Step 14** - Clean and build the project. To run the project, select "Make and program device" button.
 
-	
-- In your MPLAB Harmony v3 based application go to "firmware\src\app_ble\app_ble.c" and do the following changes.
-
-	- Under the "APP_BleConfigBasic()" add the following code.
-	
-		```
-		BLE_GAP_Addr_T devAddr;
-		devAddr.addrType = BLE_GAP_ADDR_TYPE_PUBLIC;
-		devAddr.addr[5] = 0xD1;
-		devAddr.addr[4] = 0xD2;
-		devAddr.addr[3] = 0xD3;
-		devAddr.addr[2] = 0xD4;
-		devAddr.addr[1] = 0xD5;
-		devAddr.addr[0] = 0xD6;
-
-		```
-	
-	![](docs/app_ble.png)
-	
-	
-**Step 15** - Clean and build the project. To run the project, select "Make and program device" button.
-
-**Step 16** - To the test the application in MBD app follow the steps provided below and the link for the [TRANSPARENT BLE UART](https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32cxbz2_wbz45/tree/master/apps/ble/building_blocks/peripheral/profiles_services/peripheral_trp_uart).
+**Step 15** - To the test the application in MBD app follow the steps provided below and the link for the [TRANSPARENT BLE UART](https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32cxbz2_wbz45/tree/master/apps/ble/building_blocks/peripheral/profiles_services/peripheral_trp_uart).
 
 ![](docs/mbd1.png) ![](docs/mbd2.png) ![](docs/mbd3.png) ![](docs/mbd4.png) ![](docs/mbd5.png) ![](docs/mbd6.png)
 
@@ -384,13 +319,13 @@ Follow the steps provided in the link to [program the precompiled hex file](http
 
 The application folder can be found by navigating to the following path: 
 
-- "WBZ451_E_PAPER_BLE_UART\firmware\WBZ451_E_PAPER_BLE_UART.X"
+- "WBZ351_E_PAPER_BLE_UART/WBZ351_E_PAPER_BLE_UART.X"
 
 Follow the steps provided in the link to [Build and program the application](https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32cxbz2_wbz45/tree/master/apps/ble/advanced_applications/ble_sensor#build-and-program-the-application-guid-3d55fb8a-5995-439d-bcd6-deae7e8e78ad-section).
 
 ## 7. Run the demo<a name="step7">
 
-- After programming the board, the expected application behavior is shown in the below [video](https://github.com/MicrochipTech/PIC32CXBZ2_WBZ45x_BLE_UART_E_PAPER_Display/blob/main/docs/Working_Demo.gif).
+- After programming the board, the expected application behavior is shown in the below [video](https://github.com/MicrochipTech/PIC32CXBZ3_WBZ35x_BLE_UART_E_PAPER_DISPLAY/blob/main/docs/Working_Demo.gif).
 
 ![Alt Text](docs/Working_Demo.gif)
 
